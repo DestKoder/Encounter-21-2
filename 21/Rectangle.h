@@ -1,15 +1,25 @@
 #pragma once
+
+#include "Shape.h";
+
 class Rectangle : public Shape
 {
 	int corner_x, corner_y, len, height;
 
 public:
 
-	Rectangle(int corner_x, corner_y, int len, int height) {
+	Rectangle(int corner_x, int corner_y, int len, int height) {
 		this->corner_x = corner_x;
 		this->corner_y = corner_y;
 		this->len = len;
 		this->height = height;
+	}
+
+	Rectangle() {
+		corner_x = 0;
+		corner_y = 0;
+		len = 0;
+		height = 0;
 	}
 
 	virtual void show() {
@@ -27,25 +37,24 @@ public:
 		}
 
 		out << corner_x << endl << corner_y << endl << len << endl << height << endl;
+
+		out.close();
 	}
 
-	virtual Shape load(string filename) {
+	virtual void load(string filename) {
 		ifstream in;
 
-		in.open(string filename);
+		in.open(filename);
 
 		if (!in.is_open()) {
 			cout << "Couldn't open file" << endl;
+			return;
 		}
 
-		int x, y, len, height;
-
-		in >> x;
-		in >> y;
+		in >> corner_x;
+		in >> corner_y;
 		in >> len;
 		in >> height;
-
-		return Rectangle(x, y, len, height);
 	}
 };
 

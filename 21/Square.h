@@ -6,7 +6,13 @@ class Square : public Shape
 
 public:
 
-	Square(int corner_x, corner_y, int len) {
+	Square() {
+		corner_x = 0;
+		corner_y = 0;
+		len = 0;
+	};
+
+	Square(int corner_x, int corner_y, int len) {
 		this->corner_x = corner_x;
 		this->corner_y = corner_y;
 		this->len = len;
@@ -27,24 +33,23 @@ public:
 		}
 
 		out << corner_x << endl << corner_y << endl << len << endl;
+
+		out.close();
 	}
 	
-	virtual Shape load(string filename) {
+	virtual void load(string filename) {
 		ifstream in;
 
-		in.open(string filename);
+		in.open(filename);
 
 		if (!in.is_open()) {
 			cout << "Couldn't open file" << endl;
+			return;
 		}
 
-		int x, y, len;
-
-		in >> x;
-		in >> y;
+		in >> corner_x;
+		in >> corner_y;
 		in >> len;
-
-		return Square(x, y, len);
 	}
 };
 
