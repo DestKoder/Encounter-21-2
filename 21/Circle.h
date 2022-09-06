@@ -20,7 +20,7 @@ class Circle : public Shape
 		}
 
 		virtual void show() {
-			cout << "Аля круг с центром в точке (" << corner_x << ";" << corner_y << ") и радиус " << len;
+			cout << "Аля круг с центром в точке (" << center_x << ";" << center_y << ") и радиус " << radius;
 		}
 
 		virtual void save(string filename) {
